@@ -1,7 +1,7 @@
 package com.kt.estore.controller;
 
-import javax.websocket.server.PathParam;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/products")
 public class ProductServiceRestController {
+	@Autowired
+	private Environment env;
 	
 	@PostMapping
 	public String createProduct() {
@@ -20,7 +22,7 @@ public class ProductServiceRestController {
 	}
 	@GetMapping
 	public String getProduct() {
-		return "Get HTTP";
+		return "Get HTTP"+env.getProperty("local.server.port");
 		
 	}
 	@PutMapping
