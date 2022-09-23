@@ -26,9 +26,7 @@ public class ProductAggregate {
 		if (createProductCommand.getPrice().compareTo(BigDecimal.ZERO) <= 0) {
 			throw new IllegalArgumentException("Price canot  be less than equal to Zero");
 		}
-		if (createProductCommand.getTitle().isBlank()) {
-			throw new IllegalArgumentException("Title cant be empty");
-		}
+		
 		ProductCreatedEvent prodCreated = new ProductCreatedEvent();
 		BeanUtils.copyProperties(createProductCommand, prodCreated);
 		AggregateLifecycle.apply(prodCreated);
