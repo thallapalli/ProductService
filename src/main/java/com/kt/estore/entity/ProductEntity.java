@@ -11,12 +11,14 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @Entity
 @Table(name = "products")
 @Getter
 @Setter
+@ToString
 public class ProductEntity implements Serializable {
 	/**
 	 * 
@@ -29,5 +31,10 @@ public class ProductEntity implements Serializable {
 	private String title;
 	private BigDecimal price;
 	private Integer quantity;
+	@Override
+	public String toString() {
+		return "ProductEntity [productId=" + productId + ", title=" + title + ", price=" + price + ", quantity="
+				+ quantity + "]";
+	}
 	
 }
